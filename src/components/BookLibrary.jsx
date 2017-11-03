@@ -3,8 +3,8 @@ import BookForShow from './BookForShow.jsx';
 import { All, Yes, No } from '../actions/index';
 import HeaderRoute from './HeaderRoute.jsx';
 import Button from 'antd/lib/button';
-import CollectionsPage from './NewBook.jsx';
-import '../style/main.css';
+import CollectionsPage from './NewForm.jsx';
+import '../style/main.less';
 
 class BookLibrary extends React.Component{
 	constructor(props){
@@ -15,18 +15,18 @@ class BookLibrary extends React.Component{
 		this.props.history.replace('/addBook');
 	}
 	render(){
-		const {dispatch, booklist, status, changeStatus, addBook} = this.props;
+		const { booklist, status, changeStatus, addBook } = this.props;
 		/*console.log(this.props.booklist.map(() => {
 			return 3;
 		}));*/
 		return (
-			<div>
+			<div className = "all">
 				<div className = "main">
 	                <HeaderRoute status = {All} nowStatus = {status} label = "AllBook" change = { changeStatus }/>
 	                <HeaderRoute status = {Yes} nowStatus = {status} label = "Have" change = { changeStatus }/>
 	                <HeaderRoute status = {No}  nowStatus = {status} label = "Have-Not" change = { changeStatus }/>
 	                <div className = "ex"></div>
-	                <CollectionsPage className = "plus" add = {addBook}/>
+	                <CollectionsPage className = "plus" add = {addBook} />
 	            </div>
 	            <hr />
 	            <div className = "main">

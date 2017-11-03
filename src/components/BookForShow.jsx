@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/HeaderRoute.css';
+import '../style/HeaderRoute.less';
 
 class BookForShow extends React.Component{
 	render(){

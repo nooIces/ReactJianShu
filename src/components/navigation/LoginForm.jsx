@@ -1,48 +1,34 @@
 import React from 'react';
-import { Form, Modal, Select, Input, Button } from 'antd'
+import { Form, Modal, Select, Input, Button } from 'antd';
+import { SignIn } from '../../actions/Login';
+import '../../style/navigation.less';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-class NewBook extends React.Component{
+class Login extends React.Component{
 	render(){
 		const { visible, onCancel, onCreate } = this.props;
 		const { getFieldDecorator } = this.props.form;
 		return (
 			<Modal
 		        visible={visible}
-		        title="Add New Book "
-		        okText="Add"
-		        cancelText="Back"
+		        title="Welcome to Login"
+		        okText="Login"
+		        cancelText="Cancel"
 		        onCancel={onCancel}
 		        onOk={onCreate}
 		    >
 				<Form>
 			        <FormItem
-			          label="BookName"
+			          label="username"
 			          labelCol={{ span: 6, offset: 2 }}
 			          wrapperCol={{ span: 8 }}
 			        >
-			          {getFieldDecorator('booklist', {
-			            rules: [{ required: true, message: 'Please input your book\'s name!' }],
+			          {getFieldDecorator('username', {
+			            rules: [{ required: true, message: 'Please input your username!' }],
 			          })(
 			            <Input />
-			          )}
-			        </FormItem>
-			        <FormItem
-			          label="Got"
-			          labelCol={{ span: 6, offset: 2 }}
-			          wrapperCol={{ span: 8 }}
-			        >
-			          {getFieldDecorator('own', {
-			            rules: [{ required: true, message: 'Please select one option!' }],
-			          })(
-			            <Select
-			              placeholder="是否拥有..."
-			            >
-			              <Option value="Yes">Yes</Option>
-			              <Option value="No">No</Option>
-			            </Select>
 			          )}
 			        </FormItem>
 			    </Form>
@@ -51,9 +37,9 @@ class NewBook extends React.Component{
 	}
 }
 
-const WrappedNewBook = Form.create()(NewBook);
+const WrappedLogin = Form.create()(Login);
 
-class CollectionsPage extends React.Component {
+class LoginForm extends React.Component {
   state = {
     visible: false,
   };
@@ -71,7 +57,7 @@ class CollectionsPage extends React.Component {
       }
       console.log(this.props);
       console.log('Received values of form: ', values);
-      this.props.add(values);
+      this.props.login(SignIn, values);
       form.resetFields();
       this.setState({ visible: false });
     });
@@ -82,8 +68,8 @@ class CollectionsPage extends React.Component {
   render() {
     return (
       <div className = "main">
-        <Button icon = "plus" shape = "circle" className = "plus" onClick={this.showModal}/>
-        <WrappedNewBook
+        <Button shape = "circle" className = "loginButton" onClick={this.showModal} >Login</Button>
+        <WrappedLogin
           ref={this.saveFormRef}
           visible={this.state.visible}
           onCancel={this.handleCancel}
@@ -95,4 +81,4 @@ class CollectionsPage extends React.Component {
 }
 
 
-export default CollectionsPage;
+export default LoginForm;

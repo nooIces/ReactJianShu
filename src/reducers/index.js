@@ -1,12 +1,14 @@
-import bookList from './BookList.js';
-import HaveYet from './HaveYet.js';
-import Category from './Category.jsx';
+import bookList from './BookList';
+import HaveYet from './HaveYet';
+import Category from './Category';
+import information from './Information';
 import { combineReducers } from 'redux';
 
 let Book = combineReducers({
 	bookList,
 	status: HaveYet,
-	category: Category
+	category: Category,
+	information
 });
 
 export default Book;

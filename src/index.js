@@ -13,30 +13,31 @@ import { createStore, compose } from 'redux';
 import Book from './reducers/index';
 import BookLibrary from './components/BookLibrary.jsx';
 import { Provider } from 'react-redux';
-import { AllBook, HaveBook, HaveNotBook } from './containers/index';
+import { AllBook, Navigations } from './containers/index';
 import { Yes, No } from './actions/index';
-import HeaderRoute from './components/HeaderRoute.jsx';
-import WrappedNewBook from './components/NewBook.jsx';
-import './style/main.css';
+import WrappedNewBook from './components/NewForm.jsx';
+import './style/main.less';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 
 const history = createBrowserHistory();
 
 const store = createStore(Book, {
-    bookList: [ { 'booklist':'test1', 'own':Yes }, { 'booklist':'test2', 'own':No }]
+    bookList: [ { 'booklist':'test1', 'own':Yes }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No },
+    { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No },
+    { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No },
+    { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }, { 'booklist':'test2', 'own':No }]
 });
 
 ReactDOM.render(
   <Provider store = {store} >
     <Router>
-        <div>
+        <div className = "layout">
+            <Navigations />
             <Route exact path="\/" component={AllBook}/>
-            <Route path="\/addBook" component={WrappedNewBook}/>
-            <Route path="\/nothave" component={HaveNotBook}/>
+            <Route path="\/Book" component={AllBook}/>
         </div>
     </Router>
   </Provider>
   , document.getElementById('root'));
 registerServiceWorker();
-

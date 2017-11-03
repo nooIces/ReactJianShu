@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import BookLibrary from '../components/BookLibrary.jsx';
-import OwnBook from '../components/OwnBook.jsx';
-import NotOwnBook from '../components/NotOwnBook.jsx';
+import Navigation from '../components/navigations.jsx';
 import { addbook, deletebook, changestatus, changecategory } from '../actions/index';
+import { loginInfomation } from '../actions/Login';
 
 const mapStatesToProps = (state) => {
 	return {
 		booklist: state.bookList,
-		status: state.status
+		status: state.status,
+		information: state.information
 	};
 };
 
@@ -21,6 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		changeCategory: (category) => {
 			dispatch(changecategory('changeCategory', category));
+		},
+		signInOrOut: (type, { username }) => {
+			dispatch(loginInfomation(type, username));
 		}
 	}
 }
@@ -29,18 +33,12 @@ let AllBook = connect(
 	mapDispatchToProps
 )(BookLibrary);
 
-let HaveBook = connect(
+let Navigations = connect(
 	mapStatesToProps,
 	mapDispatchToProps
-)(OwnBook);
-
-let HaveNotBook = connect(
-	mapStatesToProps,
-	mapDispatchToProps
-)(NotOwnBook);
+)(Navigation);
 
 export {
 	AllBook,
-	HaveBook,
-	HaveNotBook
+	Navigations
 };
