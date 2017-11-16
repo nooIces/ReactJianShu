@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import BookLibrary from '../components/BookLibrary.jsx';
-import Navigation from '../components/navigations.jsx';
-import { addbook, deletebook, changestatus, changecategory } from '../actions/index';
+import BookTable from '../components/book/BookTable.jsx';
+import MainMenu from '../components/navigation/MainMenu.jsx';
+import { addbook, deletebook } from '../actions/Book';
 import { loginInfomation } from '../actions/Login';
 
 const mapStatesToProps = (state) => {
@@ -14,31 +14,28 @@ const mapStatesToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addBook: ({booklist, own}) => {
-			dispatch(addbook(booklist, own));
+		addBook: ({bookName, category}, userName) => {
+			dispatch(addbook(bookName, category, userName));
 		},
-		changeStatus: (status) => {
-			dispatch(changestatus('changeStatus', status));
-		},
-		changeCategory: (category) => {
-			dispatch(changecategory('changeCategory', category));
+		deleteBook: (index) => {
+			dispatch(deletebook(index));
 		},
 		signInOrOut: (type, { username }) => {
 			dispatch(loginInfomation(type, username));
 		}
 	}
 }
-let AllBook = connect(
+let WrapBookTable = connect(
 	mapStatesToProps,
 	mapDispatchToProps
-)(BookLibrary);
+)(BookTable);
 
-let Navigations = connect(
+let MainMenus = connect(
 	mapStatesToProps,
 	mapDispatchToProps
-)(Navigation);
+)(MainMenu);
 
 export {
-	AllBook,
-	Navigations
+	WrapBookTable,
+	MainMenus
 };

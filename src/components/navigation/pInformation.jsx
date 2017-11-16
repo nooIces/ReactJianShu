@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../style/navigation.less';
-import Avatar from './Avatar.jsx';
 import PersonalCard from './PersonalCard.jsx';
 
 class Pinformation extends React.Component{

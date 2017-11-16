@@ -1,8 +1,7 @@
 import { SignIn, SignOut } from '../actions/Login';
 
 const NotLogin = {
-    username: null,
-    tag: ['se','tt','tt','tt','tt','tt']
+    username: null
 };
 const information = (state = NotLogin, action) => {
 	let type = action.type;
@@ -10,8 +9,7 @@ const information = (state = NotLogin, action) => {
 	switch(type){
 		case SignIn:
 			return {
-                username,
-                tag: ['test1', 'test2']
+                username
             };
 		case SignOut:
 			return NotLogin;

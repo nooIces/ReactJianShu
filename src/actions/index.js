@@ -10,8 +10,8 @@ const HaveYet = {
 	No
 }
 
-const addbook = (text, haveyet) => ({ 
-	type: ADD_BOOK, 
+const addbook = (text, haveyet) => ({
+	type: ADD_BOOK,
 	text,
 	haveyet
 });
@@ -19,7 +19,7 @@ const addbook = (text, haveyet) => ({
 const deletebook = (index) => ({
 	type: DELETE_BOOK,
 	index
-}); 
+});
 
 const got = (type, index) => ({
 	type,

@@ -1,4 +1,5 @@
-import { ADD_BOOK, DELETE_BOOK } from '../actions/index.js';
+import { ADD_BOOK, DELETE_BOOK, READSTATUS } from '../actions/Book';
+
 
 const bookList = (state = [], action) => {
 	let type = action.type;
@@ -6,8 +7,13 @@ const bookList = (state = [], action) => {
 	switch(type){
 		case ADD_BOOK:
 			return [{
-				booklist: action.text,
-				own: action.haveyet
+				bookName: action.bookName,
+				category: action.category,
+				score: 0,
+				userName: action.userName,
+				readStatus: READSTATUS.UNREAD,
+				createTime: new Date().toLocaleDateString(),
+				more: {}
 			}, ...state];
 		case DELETE_BOOK:
 			return state.filter((value, index) => {
